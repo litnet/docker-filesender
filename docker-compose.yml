@@ -24,6 +24,7 @@ services:
       - simplesaml:/opt/simplesamlphp
       - ./saml/config.php:/opt/conf.d/simplesamlphp_config.php
       - ./saml/authsources.php:/opt/conf.d/simplesamlphp_authsources.php
+      - ./saml/metadata-import:/opt/conf.d/metadata-import
 
   fpm:
     build: ./fpm
