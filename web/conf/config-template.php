@@ -133,7 +133,7 @@ public function loadConfig() {
 	$config['site_authenticationSource'] ="default-sp";
 	$config['site_logouturl'] = $config['site_url'] . '?s=logout';
 	}
-	$config['forceSSL'] = true; // Always use SSL (true/false)
+	$config['forceSSL'] = isset($_SERVER['HTTPS']); // Always use SSL (true/false)
 
 	// Support links
 	$config['aboutURL'] = "";
