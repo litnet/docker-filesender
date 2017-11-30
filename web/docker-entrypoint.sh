@@ -43,7 +43,23 @@ fi
 
 
 if [ -f ${CONF_DIR}/saml20-idp-remote.php ]; then
+   echo "Copying SAML2 remote IdP metadata file..."
    cp ${CONF_DIR}/saml20-idp-remote.php ${SIMPLESAML_DIR}/metadata/saml20-idp-remote.php
+fi
+
+if [ -f ${CONF_DIR}/simplesamlphp_config.php ]; then
+   echo "Copying SAML2 config file..."
+   cp ${CONF_DIR}/simplesamlphp_config.php ${SIMPLESAML_DIR}/config/config.php
+fi
+
+if [ -f ${CONF_DIR}/simplesamlphp_authsources.php ]; then
+   echo "Copying SAML2 authsources file..."
+   cp ${CONF_DIR}/simplesamlphp_authsources.php ${SIMPLESAML_DIR}/config/authsources.php
+fi
+
+if [ -d ${CONF_DIR}/metadata-import ]; then
+   echo "Copying SAML2 metadata import directory..."
+   cp -r ${CONF_DIR}/metadata-import ${SIMPLESAML_DIR}/metadata/metadata-import
 fi
 
 

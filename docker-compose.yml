@@ -22,6 +22,8 @@ services:
     volumes:
       - filesender:/opt/filesender
       - simplesaml:/opt/simplesamlphp
+      - ./saml/config.php:/opt/conf.d/simplesamlphp_config.php
+      - ./saml/authsources.php:/opt/conf.d/simplesamlphp_authsources.php
 
   fpm:
     build: ./fpm
