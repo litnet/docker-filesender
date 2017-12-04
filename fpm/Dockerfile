@@ -1,4 +1,4 @@
-FROM php:7-fpm-alpine
+FROM php:7.0-fpm-alpine
 
 RUN apk add --no-cache libmcrypt-dev \
                        pcre-dev \
