@@ -59,7 +59,13 @@ fi
 
 if [ -d ${CONF_DIR}/metadata-import ]; then
    echo "Copying SAML2 metadata import directory..."
-   cp -r ${CONF_DIR}/metadata-import ${SIMPLESAML_DIR}/metadata/metadata-import
+   cp -r ${CONF_DIR}/metadata-import ${SIMPLESAML_DIR}/metadata
+fi
+
+
+if [ -d ${CONF_DIR}/cert ]; then
+   echo "Copying certificates to SimpleSAMLphp cert dir..."
+   cp ${CONF_DIR}/cert ${SIMPLESAML_DIR} -r
 fi
 
 

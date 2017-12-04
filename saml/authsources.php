@@ -11,8 +11,6 @@ $config = array(
     ),
 
 
-    // An authentication source which can authenticate against both SAML 2.0
-    // and Shibboleth 1.3 IdPs.
     'default-sp' => array(
         'saml:SP',
 
@@ -27,6 +25,31 @@ $config = array(
         // The URL to the discovery service.
         // Can be NULL/unset, in which case a builtin discovery service will be used.
         'discoURL' => null,
+	'privatekey' => 'saml.pem',
+        'certificate' => 'saml.crt',
+	'name' => array(
+		'lt' => 'FileSender paslauga',
+		'en' => 'FileSender service'
+	),
+	'description' => array(
+		'lt' => 'FileSender paslauga',
+		'en' => 'FileSender service'
+	),
+	'UIInfo' => array(
+		'DisplayName' => array(
+			'lt' => 'FileSender paslauga',
+			'en' => 'FileSender service'
+       		),
+		'Description' => array(
+			'lt' => 'FileSender paslauga',
+			'en' => 'FileSender service'
+	        ),
+	),
+
+	'attributes.NameFormat' => 'urn:oasis:names:tc:SAML:2.0:attrname-format:uri',
+	'WantAssertionsSigned' => TRUE,
+        'sign.authnrequest' => TRUE,
+
 
         /*
          * WARNING: SHA-1 is disallowed starting January the 1st, 2014.
@@ -46,7 +69,7 @@ $config = array(
          *
          * Please refer to the hosted SP configuration reference for more information.
           */
-        //'signature.algorithm' => 'http://www.w3.org/2001/04/xmldsig-more#rsa-sha256',
+        'signature.algorithm' => 'http://www.w3.org/2001/04/xmldsig-more#rsa-sha256',
 
         /*
          * The attributes parameter must contain an array of desired attributes by the SP.
@@ -55,9 +78,15 @@ $config = array(
          * The metadata will then be created as follows:
          * <md:RequestedAttribute FriendlyName="friendlyName" Name="name" />
          */
-        /*'attributes' => array(
-            'attrname' => 'urn:oid:x.x.x.x',
-        ),*/
+	'authproc' => array(
+		100 => array ('class' => 'core:AttributeMap',  'oid2name'),
+	),
+	'attributes' => array (
+	    "urn:oid:0.9.2342.19200300.100.1.3",
+	    "urn:oid:2.16.840.1.113730.3.1.241",
+	    "urn:oid:0.9.2342.19200300.100.1.1"
+        ),
+
         'attributes.required' => array (
 	    "urn:oid:0.9.2342.19200300.100.1.3",
 	    "urn:oid:2.16.840.1.113730.3.1.241",
